@@ -16,14 +16,14 @@ const Translator = () => {
                 </form>
             </div>
             <div className="outputTextContainer">
-                <select name="" id="">
+                {/* <select name="" id=""> */}
                     <option value="">Lang</option>
                     <option value="">Lang</option>
                     <option value="">Lang</option>
                     <option value="">Lang</option>
                     <option value="">Lang</option>
                     <option value="">Lang</option>
-                </select>
+                {/* </select> */}
                 <p></p>
             </div>
         </main>
