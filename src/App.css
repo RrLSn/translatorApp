@@ -1,0 +1,43 @@
+*{
+    @apply m-0 p-0 box-border
+}
+
+.app{
+    @apply w-screen h-screen px-[2rem] py-[6rem]
+}
+
+main{
+    @apply w-[100%] h-[30rem] flex justify-between
+}
+
+.containers{
+    @apply p-[1.5rem] bg-red-300
+}
+
+.inputTextContainer{
+    @apply w-[49%] rounded-lg
+}
+
+.outputTextContainer{
+    @apply w-[49%] rounded-lg
+}
+
+.btn{
+    @apply w-[100%] flex justify-end mb-[2rem] 
+}
+
+.translateBtn{
+    @apply bg-blue-400 text-white text-[1.2rem] py-[0.5rem] font-[500] w-[10rem] border border-blue-400
+}
+
+textarea{
+    @apply w-[100%] h-[40vh] focus:outline-none
+}
+
+.select{
+    @apply focus:outline-none w-[10rem] py-[0.5rem]
+}
+
+.outputText{
+    @apply w-[100%] h-[40vh]
+}
