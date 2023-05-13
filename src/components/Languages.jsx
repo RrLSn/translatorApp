@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-const Languages = () => {
-    const [selectedItem, setSelectedItem] = useState(null)
+const Languages = (props) => {
+    const {setSelectedItem} = props
     const languages_list = [
         {name: "Select Language"},
         {name: "Afrikaans", code: "af"},
@@ -149,9 +149,9 @@ const Languages = () => {
     ];
 
 
-    // const handleChange = (e) => {
-    //     setSelectedItem(e.target.value)
-    // }
+    const handleChange = (e) => {
+        setSelectedItem(e.target.value)
+    }
 
     const options = languages_list.map((Language, index) => {
         return (
@@ -164,7 +164,7 @@ const Languages = () => {
   return (
     <div className='btn'>
         <select className='select'
-        //  onChange={handleChange}
+         onChange={handleChange}
          >
             {options}
         </select>
