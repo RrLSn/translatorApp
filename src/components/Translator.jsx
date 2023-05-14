@@ -38,7 +38,7 @@ const Translator = () => {
 
         await fetch(url).then((res) => res.json()).then((data)=> {console.log(data)})
 
-        // setInputText('')
+        setInputText('')
     }
 
   return (
