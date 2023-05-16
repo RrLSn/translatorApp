@@ -1,54 +1,57 @@
 import React from 'react'
 import { useState } from 'react'
 import Languages from './Languages'
+import axios from 'axios'
 
 const Translator = () => {
 
     const [inputText, setInputText] = useState('')
+    const [result, setResult] = useState()
     const [outputText, setOutputText] = useState('')
     const [selectedItem, setSelectedItem] = useState(null)
+    const [errMessage, setErrMessage] = useState()
 
     
     const translateClick = async() =>{
-        // const url = 'https://google-translator9.p.rapidapi.com/v2';
-        // const options = {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json',
-        //         'X-RapidAPI-Key': '92a22776b5msh423d8dbc585bf21p1fd0c4jsn109e0f8add59',
-        //         'X-RapidAPI-Host': 'google-translator9.p.rapidapi.com'
-        //     },
-        //     body: {
-        //         q: 'The Great Pyramid of Giza (also known as the Pyramid of Khufu or the Pyramid of Cheops) is the oldest and largest of the three pyramids in the Giza pyramid complex.',
-        //         source: 'en',
-        //         target: 'fr',
-        //         format: 'text'
-        //     }
-        // };
-
-        // try {
-        //     const response = await fetch(url, options);
-        //     const result = await response.text();
-        //     console.log(result);
-        // } catch (error) {
-        //     console.error(error);
-        // }
-
-        const url = `https://api.mymemory.translated.net/get?q=${inputText}&langpair=en|${selectedItem}`
-
-        await fetch(url).then((res) => res.json()).then((data)=> {console.log(data)})
-
-        setInputText('')
+        const options = {
+            method: 'POST',
+            url: 'https://microsoft-translator-text.p.rapidapi.com/translate',
+            params: {
+              'to[0]': `${selectedItem}`,
+              'api-version': '3.0',
+              profanityAction: 'NoAction',
+              textType: 'plain'
+            },
+            headers: {
+              'content-type': 'application/json',
+              'X-RapidAPI-Key': '92a22776b5msh423d8dbc585bf21p1fd0c4jsn109e0f8add59',
+              'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com'
+            },
+            data: [
+              {
+                Text: `${inputText}`
+              }
+            ]
+          };
+          
+          try {
+              const response = await axios.request(options);
+              setResult(response.data);
+              setOutputText(result[0].translations[0].text)
+            //   console.log(outputText)
+          } catch (error) {
+              setErrMessage(error);
+          }
     }
 
   return (
     <div>
         <main>
             <div className="inputTextContainer containers">
-                <form className='btn'>
-                <button onClick={translateClick()} className='translateBtn'>Translate</button>
+                <form className='btn' onSubmit={() => translateClick()}>
+                <button className='translateBtn'>Translate</button>
                 </form>
-                <div action="">
+                <div>
                     <textarea 
                     placeholder='Enter Text (any Language)' className='resize-none p-[1rem]'
                     onChange={(e) => setInputText(e.target.value)}></textarea>

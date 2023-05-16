@@ -39,5 +39,5 @@ textarea{
 }
 
 .outputText{
-    @apply w-[100%] h-[40vh]
+    @apply w-[100%] h-[40vh] bg-white
 }
