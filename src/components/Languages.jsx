@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const Languages = (props) => {
-    const {setSelectedItem} = props
+    const {setSelectedLang} = props
     const languages_list = [
         {name: "Select Language"},
         {name: "Afrikaans", code: "af"},
@@ -150,7 +150,7 @@ const Languages = (props) => {
 
 
     const handleChange = (e) => {
-        setSelectedItem(e.target.value)
+        setSelectedLang(e.target.value)
     }
 
     const options = languages_list.map((Language, index) => {
