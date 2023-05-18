@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import Languages from './Languages'
 import axios from 'axios'
+import {AiOutlineClose} from 'react-icons/ai'
 
 const Translator = () => {
 
@@ -9,7 +10,7 @@ const Translator = () => {
     const [outputText, setOutputText] = useState('')
     const [detectedLang, setDetectedLang] = useState('')
     const [selectedLang, setSelectedLang] = useState('')
-    // const [errMessage, setErrMessage] = useState()
+    const [copied, setCopied] = useState(false)
 
     
     const translateClick = async() =>{
@@ -39,8 +40,17 @@ const Translator = () => {
               const result = response.data[0].translations[0].text
               setOutputText(result)
               setDetectedLang(response.data[0].detectedLanguage.language)
-            //   console.log(detectedLang)
           } catch (error) {}
+    }
+
+    const clearInput = () => {
+        setInputText('')
+        setOutputText('')
+    }
+
+    const copyInputText = () => {
+        inputText.slice()
+
     }
 
   return (
@@ -51,10 +61,26 @@ const Translator = () => {
                     {/* <Languages setSelectedLang={setSelectedLang}/> */}
                     <button onClick={() => translateClick()} className='translateBtn'>Translate</button>
                 </div>
+
+                <div className='textarea'>
                 <textarea 
-                placeholder='Enter text (any language)' className='resize-none p-[1.5rem] text-[1.3rem]'
-                onChange={(e) => setInputText(e.target.value)}></textarea>
+                placeholder='Enter text (any language)' className='resize-none p-[1.5rem] focus:outline-none w-[95%] h-[100%] text-[1.3rem]'
+                onChange={(e) => setInputText(e.target.value)}
+                value={inputText}></textarea>
+                <div className='icons'>
+                    {
+                        inputText !== '' &&
+                        <AiOutlineClose
+                        className='icon-btn close-btn'
+                        onClick={clearInput}
+                        />
+                    }
+                <img src="/Media/copyLine.svg" 
+                className="w-[2rem]" onCopy={() => setCopied(true)} />
+                </div>
+                </div>
             </div>
+            
             <div className="outputTextContainer containers">
                 <Languages setSelectedLang={setSelectedLang}/>
                 <div className='outputText'>
