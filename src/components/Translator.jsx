@@ -6,58 +6,63 @@ import axios from 'axios'
 const Translator = () => {
 
     const [inputText, setInputText] = useState('')
-    const [result, setResult] = useState()
     const [outputText, setOutputText] = useState('')
-    const [selectedLang, setSelectedLang] = useState(null)
-    const [errMessage, setErrMessage] = useState()
+    const [detectedLang, setDetectedLang] = useState('')
+    const [selectedLang, setSelectedLang] = useState('')
+    // const [errMessage, setErrMessage] = useState()
 
     
     const translateClick = async() =>{
-        const encodedParams = new URLSearchParams();
-        encodedParams.set('q', `${inputText}`);
-        encodedParams.set('target', `${selectedLang}`);
-        encodedParams.set('source', 'en');
-
         const options = {
             method: 'POST',
-            url: 'https://google-translate1.p.rapidapi.com/language/translate/v2',
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded',
-                'Accept-Encoding': 'application/gzip',
-                'X-RapidAPI-Key': '92a22776b5msh423d8dbc585bf21p1fd0c4jsn109e0f8add59',
-                'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+            url: 'https://microsoft-translator-text.p.rapidapi.com/translate',
+            params: {
+              'to[0]': `${selectedLang}`,
+              'api-version': '3.0',
+              profanityAction: 'NoAction',
+              textType: 'plain'
             },
-            data: encodedParams,
-        };
-
-        try {
-            const response = await axios.request(options);
-            console.log(response)
-            setResult(response.data);
-            setOutputText(result["data"].translations[0].translatedText)
-            // console.log(outputText)
-        } catch (error) {
-            console.error(error);
-        }
+            headers: {
+              'content-type': 'application/json',
+              'X-RapidAPI-Key': '33702c6607mshb7dda5ec3efe52ap1b7002jsn3f8635e7163a',
+              'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com'
+            },
+            data: [
+              {
+                Text: `${inputText}`
+              }
+            ]
+          };
+          
+          try {
+              const response = await axios.request(options);
+              const result = response.data[0].translations[0].text
+              setOutputText(result)
+              setDetectedLang(response.data[0].detectedLanguage.language)
+            //   console.log(detectedLang)
+          } catch (error) {}
     }
 
   return (
     <div>
         <main>
             <div className="inputTextContainer containers">
-                {/* <form className='btn' onSubmit={() => translateClick()}> */}
-                <button onClick={() => translateClick()} className='translateBtn'>Translate</button>
-                {/* </form> */}
-                <div>
-                    <textarea 
-                    placeholder='Enter Text (any Language)' className='resize-none p-[1rem]'
-                    onChange={(e) => setInputText(e.target.value)}></textarea>
+                <div className='btn'>
+                    {/* <Languages setSelectedLang={setSelectedLang}/> */}
+                    <button onClick={() => translateClick()} className='translateBtn'>Translate</button>
                 </div>
+                <textarea 
+                placeholder='Enter text (any language)' className='resize-none p-[1.5rem] text-[1.3rem]'
+                onChange={(e) => setInputText(e.target.value)}></textarea>
             </div>
             <div className="outputTextContainer containers">
                 <Languages setSelectedLang={setSelectedLang}/>
                 <div className='outputText'>
-                    {/* <p>{outputText}</p> */}
+                    {
+                    outputText === '' ?
+                    <span className='outputPlaceholder'>Select a Language</span>:
+                    outputText
+                    }
                 </div>
             </div>
         </main>

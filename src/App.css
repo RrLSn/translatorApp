@@ -23,15 +23,15 @@ main{
 }
 
 .btn{
-    @apply w-[100%] flex justify-end mb-[2rem] 
+    @apply w-[100%] h-[3rem] flex justify-end mb-[2rem] gap-[5rem]
 }
 
 .translateBtn{
-    @apply bg-blue-400 text-white text-[1.2rem] py-[0.5rem] font-[500] w-[10rem] border border-blue-400
+    @apply bg-blue-400 text-white text-[1.2rem] py-[0.5rem] font-[500] w-[10rem] h-[100%] border border-blue-400
 }
 
 textarea{
-    @apply w-[100%] h-[40vh] focus:outline-none
+    @apply w-[100%] h-[40vh] focus:outline-none rounded-lg
 }
 
 .select{
@@ -39,5 +39,9 @@ textarea{
 }
 
 .outputText{
-    @apply w-[100%] h-[40vh] bg-white
+    @apply w-[100%] h-[40vh] bg-white p-[1.5rem] text-[1.3rem] rounded-lg
+}
+
+.outputPlaceholder{
+    @apply text-gray-400
 }
