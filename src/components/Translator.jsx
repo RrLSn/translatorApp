@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Languages from './Languages'
 import axios from 'axios'
 import {AiOutlineClose} from 'react-icons/ai'
+import CopyToClipboard from 'react-copy-to-clipboard'
 
 const Translator = () => {
 
@@ -48,17 +49,12 @@ const Translator = () => {
         setOutputText('')
     }
 
-    const copyInputText = () => {
-        inputText.slice()
-
-    }
-
   return (
     <div>
         <main>
             <div className="inputTextContainer containers">
                 <div className='btn'>
-                    {/* <Languages setSelectedLang={setSelectedLang}/> */}
+                    <Languages setSelectedLang={setSelectedLang}/>
                     <button onClick={() => translateClick()} className='translateBtn'>Translate</button>
                 </div>
 
@@ -75,8 +71,10 @@ const Translator = () => {
                         onClick={clearInput}
                         />
                     }
-                <img src="/Media/copyLine.svg" 
-                className="w-[2rem]" onCopy={() => setCopied(true)} />
+                <CopyToClipboard text={inputText} onCopy={() => setCopied(true)}>
+                    <img src="/Media/copyLine.svg" 
+                    className="w-[2rem] cursor-pointer" />
+                </CopyToClipboard>
                 </div>
                 </div>
             </div>
