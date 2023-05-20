@@ -54,7 +54,7 @@ const Translator = () => {
         <main>
             <div className="inputTextContainer containers">
                 <div className='btn'>
-                    <Languages setSelectedLang={setSelectedLang}/>
+                    {/* <Languages setSelectedLang={setSelectedLang}/> */}
                     <button onClick={() => translateClick()} className='translateBtn'>Translate</button>
                 </div>
 
