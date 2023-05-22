@@ -82,6 +82,10 @@ const Translator = () => {
             <div className="outputTextContainer containers">
                 <Languages setSelectedLang={setSelectedLang}/>
                 <div className='outputText'>
+                <CopyToClipboard text={outputText} onCopy={() => setCopied(true)}>
+                    <div className='flex justify-end'><img src="/Media/copyLine.svg" 
+                    className="w-[2rem] cursor-pointer" /></div>
+                </CopyToClipboard>
                     {
                     outputText === '' ?
                     <span className='outputPlaceholder'>Select a Language</span>:
