@@ -14,6 +14,7 @@ COMPONENTS
 
 # Demo
 [Preview](https://aesthetic-moonbeam-a8a658.netlify.app)
+![Screenshot](/public/Media/Screenshot%202023-05-22%20211129.png)
 
 # Contact
 If you want to contact me, you can reach me at

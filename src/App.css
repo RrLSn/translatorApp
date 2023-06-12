@@ -3,11 +3,7 @@
 }
 
 .app{
-    @apply w-screen h-screen px-[2rem] py-[6rem]
-}
-
-main{
-    @apply w-[100%] h-[30rem] flex justify-between
+    @apply w-screen lg:h-screen h-[160vh] px-[2rem] lg:py-[6rem] py-[2rem]
 }
 
 .containers{
@@ -15,19 +11,19 @@ main{
 }
 
 .inputTextContainer{
-    @apply w-[49%] rounded-lg
+    @apply lg:w-[49%] w-[100%] rounded-lg lg:mb-0 mb-11
 }
 
 .outputTextContainer{
-    @apply w-[49%] rounded-lg
+    @apply lg:w-[49%] w-[100%] rounded-lg
 }
 
 .btn{
-    @apply w-[100%] h-[3rem] flex justify-end mb-[2rem] gap-[3rem]
+    @apply w-[100%] lg:h-[3rem] h-[2rem] flex justify-end mb-[2rem] gap-[3rem]
 }
 
 .translateBtn{
-    @apply bg-blue-400 text-white text-[1.2rem] py-[0.5rem] font-[500] w-[8rem] h-[100%] border border-blue-400 rounded-lg
+    @apply bg-blue-400 text-white lg:text-[1.2rem] lg:py-[0.5rem] font-[500] lg:w-[8rem] w-[5rem] h-[100%] border border-blue-400 rounded-lg
 }
 
 .textarea{
@@ -35,7 +31,7 @@ main{
 }
 
 .select{
-    @apply focus:outline-none w-[10rem] py-[0.5rem]
+    @apply focus:outline-none lg:w-[10rem] w-[6rem] lg:py-[0.5rem]
 }
 
 .outputText{

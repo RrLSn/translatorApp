@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Languages = (props) => {
-    const {setSelectedLang} = props
+const InputLanguages = (props) => {
+    const {setDetectedLang,detectedLang} = props
+
     const languages_list = [
         {name: "Select Language"},
         {name: "Afrikaans", code: "af"},
@@ -148,18 +149,17 @@ const Languages = (props) => {
         {name: "Zulu - isiZulu", code: "zu"}
     ];
 
-
     const handleChange = (e) => {
-        setSelectedLang(e.target.value)
+        setDetectedLang(e.target.value)
     }
 
     const options = languages_list.map((Language, index) => {
         return (
-          <option key={index} value={Language.code}>
+          <option key={index} value={detectedLang}>
             {Language.name}
           </option>
         );
-      });
+    });
 
   return (
     <div className='btn'>
@@ -172,4 +172,4 @@ const Languages = (props) => {
   )
 }
 
-export default Languages
+export default InputLanguages
